@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anchor Hunting Safari | Namibia</title>
+    <!-- Font Awesome 6 (professional icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: subtle military grade -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Animate on Scroll (AOS) library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" href="logo.jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* hide default cursor to use custom scope */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #2b3a2b;
+            color: #f5efe0;
+            line-height: 1.6;
+        }
+
+        /* custom sniper scope cursor (smaller) */
+        .custom-cursor {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2.5px solid rgba(230, 210, 140, 0.9);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, border-color 0.2s;
+            box-shadow: 0 0 15px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,240,0.3) inset;
+            backdrop-filter: blur(1px);
+            mix-blend-mode: difference;
+        }
+
+        .custom-cursor::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16px;
+            height: 2px;
+            background: rgba(230, 210, 140, 0.8);
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 8px black;
+        }
+
+        .custom-cursor::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 16px;
+            background: rgba(230, 210, 140, 0.8);
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 8px black;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #f5e7b0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px #ffd27f;
+        }
+
+        /* camouflage shades & military texture */
+        .bg-camou {
+            background: linear-gradient(145deg, #3c523c 0%, #5f6b3c 30%, #7d6e4b 70%, #4e5b3a 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .bg-camou::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.1"><path d="M70 20 Q90 10 110 20 Q130 30 120 55 Q110 80 80 75 Q50 70 60 40 Q65 25 70 20" fill="%2335452e"/><path d="M150 120 Q170 110 180 130 Q190 150 165 165 Q140 180 125 155 Q110 130 135 125 Q145 120 150 120" fill="%236b4f32"/><path d="M30 150 Q45 140 60 155 Q70 175 45 180 Q20 185 25 155 Q28 145 30 150" fill="%235d6d3b"/></svg>');
+            background-size: 250px 250px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* professional, no cartoon */
+        header, section, footer {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* STICKY NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            border-bottom: 2px solid #7c8034;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(43, 58, 43, 0.95);
+            backdrop-filter: blur(8px);
+            width: 100%;
+            left: 0;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Adjust wrapper for nav stickiness - nav is now inside wrapper but full width */
+        .wrapper nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: calc(100% - 60px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 65px;
+            width: 65px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+            border-radius: 50%; /* Circular frame */
+            background: #2a3a2a;
+            padding: 3px;
+            border: 2px solid #b89d5a;
+            object-fit: cover;
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff2cf;
+            text-shadow: 2px 2px 0 #2d4025;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 0; /* aligned left naturally */
+        }
+
+        .nav-links a {
+            color: #fff6e5;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b3a577;
+            color: #ffffff;
+        }
+
+        .book-btn {
+            background: #7b5e3c;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            border: 1px solid #a5976e;
+            transition: 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 1px 2px black;
+        }
+
+        .book-btn i {
+            font-size: 1rem;
+            color: #ffeaaf;
+        }
+
+        .book-btn:hover {
+            background: #6c4f31;
+            border-color: #dbbc7c;
+            transform: scale(1.02);
+        }
+
+        /* HERO SLIDESHOW - text overlayed on images */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            min-height: 600px;
+            margin: 30px 0 50px;
+            border-radius: 40px;
+            overflow: hidden;
+            border: 2px solid #787b4b;
+            box-shadow: 20px 20px 0 #1f2a1f;
+        }
+
+        .hero-slideshow {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.1);
+            animation: slowZoom 10s ease-in-out forwards;
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1) translateY(0); }
+            100% { transform: scale(1.1) translateY(-2%); }
+        }
+
+        .hero-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            z-index: 20;
+            max-width: 650px;
+            background: rgba(30, 45, 30, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 40px 50px;
+            border-radius: 30px;
+            border-left: 8px solid #dbb86b;
+            border-bottom: 4px solid #9f8b4c;
+            color: white;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        .hero-text-overlay h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #ffffff;
+            text-shadow: 4px 4px 0 #2d4025;
+            margin-bottom: 15px;
+        }
+
+        .hero-text-overlay .tagline {
+            font-size: 1.5rem;
+            margin: 15px 0 20px;
+            color: #fff5dd;
+            border-left: 5px solid #c9b07c;
+            padding-left: 20px;
+        }
+
+        .hero-text-overlay p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-text-overlay i {
+            color: #e6d5a8;
+            margin-right: 8px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .scope-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10rem;
+            color: rgba(230, 215, 160, 0.3);
+            text-shadow: 0 0 40px black;
+            pointer-events: none;
+            z-index: 15;
+            mix-blend-mode: overlay;
+        }
+
+        /* cards for animals & prices WITH IMAGES and BOOK button */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 50px 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 3px solid #b8a86b;
+            padding-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0 2px 5px black;
+        }
+
+        .section-title i {
+            font-size: 2.2rem;
+            color: #eedbaa;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .animal-card {
+            background: rgba(40, 55, 35, 0.85);
+            backdrop-filter: blur(2px);
+            border: 2px solid #848e54;
+            border-radius: 24px;
+            padding: 0 0 20px 0;
+            text-align: center;
+            transition: all 0.25s;
+            box-shadow: 8px 8px 0 #1f2e1f;
+            overflow: hidden;
+        }
+
+        .animal-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 14px 14px 0 #142014;
+            border-color: #cfbc7a;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+        }
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .animal-card:hover .card-image img {
+            transform: scale(1.07);
+        }
+
+        .animal-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 15px 0 5px;
+            text-shadow: 0 2px 4px black;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 5px 0;
+            color: #ffeaa6;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 3px black;
+        }
+
+        .price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #ddcca2;
+        }
+
+        .card-book-btn {
+            display: inline-block;
+            background: #7b5e3c;
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            margin: 15px 0 5px;
+            border: 1px solid #bba66b;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            box-shadow: 0 3px 0 #3d462b;
+        }
+        .card-book-btn i {
+            margin-right: 6px;
+            color: #ffe28a;
+        }
+        .card-book-btn:hover {
+            background: #9c7e4c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 0 #3d462b;
+        }
+
+        .bullet-detail {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0 5px;
+            color: #f0e2b5;
+            font-size: 1rem;
+            border-top: 1px dashed #87965a;
+            padding-top: 12px;
+        }
+
+        /* About section with image */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: #2f402fe0;
+            border: 2px solid #7f8f57;
+            border-radius: 50px 20px 50px 20px;
+            padding: 45px 50px;
+            margin: 60px 0;
+            backdrop-filter: blur(3px);
+            box-shadow: 10px 10px 0 #1a2a1a;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #fff2cf;
+            margin-bottom: 25px;
+            border-left: 7px solid #b89d5a;
+            padding-left: 25px;
+            text-shadow: 0 2px 5px black;
+        }
+        .about-content p {
+            font-size: 1.18rem;
+            margin-bottom: 22px;
+            color: #fff7e6;
+            text-shadow: 0 1px 3px black;
+            line-height: 1.7;
+        }
+        .about-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 3px solid #b89d5a;
+            box-shadow: 15px 15px 0 #1d2a1d;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Accommodation slideshow section */
+        .accommodation-section {
+            margin: 80px 0;
+        }
+        .accommodation-section h2 {
+            font-size: 2.5rem;
+            color: #fff2cf;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 0 2px 5px black;
+        }
+        .accommodation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .accommodation-card {
+            background: rgba(40, 55, 35, 0.9);
+            border: 2px solid #848e54;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0 #1f2e1f;
+            transition: 0.3s;
+        }
+        .accommodation-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 16px 16px 0 #142014;
+            border-color: #cfbc7a;
+        }
+        .acc-image {
+            height: 280px;
+            overflow: hidden;
+        }
+        .acc-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 5s ease;
+        }
+        .accommodation-card:hover .acc-image img {
+            transform: scale(1.1);
+        }
+        .acc-text {
+            padding: 25px;
+            text-align: center;
+        }
+        .acc-text h3 {
+            font-size: 1.8rem;
+            color: #ffeaa6;
+            margin-bottom: 10px;
+        }
+        .acc-text p {
+            color: #f0e2d0;
+            font-size: 1rem;
+        }
+
+        /* quote / contact section */
+        .contact-quote-section {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            margin: 70px 0;
+            background: #2d402dd9;
+            border: 2px solid #7e9053;
+            border-radius: 50px 20px 50px 20px;
+            padding: 40px;
+            backdrop-filter: blur(3px);
+        }
+
+        .book-form h2, .adventure-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff8e0;
+            text-shadow: 0 2px 5px black;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            flex: 1 1 200px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #fff3ce;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px black;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: #2a3a28;
+            border: 1px solid #9aa568;
+            border-radius: 12px;
+            color: #ffffff;
+            font-weight: 500;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #ecd68e;
+            box-shadow: 0 0 0 2px #706a37;
+        }
+
+        .animal-check-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px 15px;
+            margin: 10px 0 20px;
+            color: #fff6e0;
+        }
+
+        .animal-check-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .animal-check-item input[type="checkbox"] {
+            accent-color: #b69f59;
+            width: 16px; height: 16px;
+        }
+
+        .get-quote-btn {
+            background: #77643d;
+            border: none;
+            padding: 16px 35px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 40px;
+            color: #ffffff;
+            border: 1px solid #e6cf8b;
+            cursor: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 0 #3f462b;
+            text-shadow: 0 1px 3px black;
+        }
+
+        .get-quote-btn i {
+            font-size: 1.4rem;
+        }
+
+        .get-quote-btn:hover {
+            background: #9e834b;
+            box-shadow: 0 6px 0 #3f462b;
+            transform: translateY(-2px);
+        }
+
+        .adventure-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #fff5e2;
+            text-shadow: 0 1px 4px black;
+        }
+
+        .contact-line {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+            font-size: 1.2rem;
+            background: #2b3f2b;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid #a5b371;
+            color: #ffffff;
+        }
+
+        .contact-line i {
+            font-size: 2rem;
+            color: #ffde9e;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 4px solid #8b9a59;
+            padding: 40px 0 30px;
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            color: #fff0cb;
+            text-shadow: 0 1px 4px black;
+        }
+        .footer-col p, .footer-col a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin: 8px 0;
+            font-size: 0.95rem;
+            text-shadow: 0 1px 3px black;
+        }
+
+        .footer-col a:hover {
+            color: #ffe484;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            font-size: 2rem;
+            color: #ffeaa5;
+            transition: 0.2s;
+        }
+
+        .social-icons a:hover {
+            color: #ffd966;
+            transform: scale(1.1);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            font-size: 0.9rem;
+            color: #f0e2bb;
+        }
+
+        @media (max-width: 900px) {
+            .hero { height: 60vh; }
+            .hero-text-overlay { left: 5%; right: 5%; padding: 25px; }
+            .about-section { grid-template-columns: 1fr; }
+            .accommodation-grid { grid-template-columns: 1fr; }
+            .contact-quote-section { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            nav { flex-direction: column; gap: 15px; }
+            .nav-links { gap: 20px; }
+        }
+        @media (max-width: 600px) {
+            .nav-links { gap: 15px; flex-wrap: wrap; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style> 
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-camou no-emoji">
+    <!-- custom scope cursor elements -->
+    <div class="custom-cursor" id="scopeCursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <div class="wrapper">
+        <!-- Navigation - Sticky, with circular logo and company name -->
+        <nav>
+            <div class="logo">
+                <img src="logo.jpg" alt="Anchor Hunting Safari logo">
+                <span>ANCHOR</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Tours</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+            <!-- Phone removed from nav, kept as separate button -->
+            <a href="#" class="book-btn"><i class="fas fa-crosshairs"></i> BOOK NOW</a>
+        </nav>
+
+        <!-- Hero section with slideshow and overlaid text -->
+        <div class="hero">
+            <div class="hero-slideshow">
+                <div class="hero-slide active"><img src="guy.jpg" alt="African Savanna"></div>
+                <div class="hero-slide"><img src="dead1.png" alt="Giraffe in Namibia"></div>
+                <div class="hero-slide"><img src="hind.png" alt="Kudu antelope"></div>
+                <div class="hero-slide"><img src="land.jpg" alt="Hunter with binoculars"></div>
+                <div class="hero-slide"><img src="dead2.png" alt="Namibian landscape"></div>
+                <div class="scope-overlay"><i class="fas fa-crosshairs"></i></div>
+            </div>
+            <div class="hero-text-overlay">
+                <h1>YOUR NEXT AFRICAN ADVENTURE</h1>
+                <div class="tagline"><i class="fas fa-location-dot"></i> Namibia · Professional hunting · Fair chase</div>
+                <p><i class="fas fa-bullseye"></i> Exclusive anchored safaris with veteran outfitters.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="book-btn" style="font-size: 1.2rem; padding: 14px 32px;"><i class="fas fa-scope"></i> Book A Hunt</a>
+                    <a href="#" class="book-btn" style="background: #3c502c;"><i class="fas fa-info-circle"></i> Get a quote</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animal cards with images and BOOK button (scroll animations) -->
+        <div class="section-title">
+            <i class="fas fa-gun"></i> 
+            <span>TROPHY PRICE LIST · NAMIBIA</span>
+            <i class="fas fa-bullseye"></i>
+        </div>
+        <div class="card-grid">
+            <!-- cards with data-aos fade-up (your images preserved) -->
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600"><div class="card-image"><img src="Chacma Baboon.webp" alt="Baboon"></div><h3>Chacma Baboon</h3><div class="price">$650 <small>est.</small></div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="50"><div class="card-image"><img src="Sable.png" alt="Sable"></div><h3>Sable</h3><div class="price">$4,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100"><div class="card-image"><img src="Roan.png" alt="Roan"></div><h3>Roan</h3><div class="price">$4,800</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="150"><div class="card-image"><img src="Red_lechwe.jpg" alt="Lechwe"></div><h3>Red Lechwe</h3><div class="price">$1,950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200"><div class="card-image"><img src="cape eland.png" alt="Eland"></div><h3>Cape Eland</h3><div class="price">$3,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-bullseye"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="250"><div class="card-image"><img src="GreaterKudu.jpg" alt="Kudu"></div><h3>Greater Kudu</h3><div class="price">$2,750</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300"><div class="card-image"><img src="Oryx.png" alt="Oryx"></div><h3>Oryx</h3><div class="price">$2,150</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="350"><div class="card-image"><img src="girraf.jpg" alt="Giraffe"></div><h3>Giraffe</h3><div class="price">$6,500</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400"><div class="card-image"><img src="Waterbuck.png" alt="Waterbuck"></div><h3>Waterbuck</h3><div class="price">$2,400</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="450"><div class="card-image"><img src="zebra.png" alt="Zebra"></div><h3>Burchell Zebra</h3><div class="price">$1,850</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500"><div class="card-image"><img src="BlueWilderbeest.png" alt="Wildebeest"></div><h3>Blue Wildebeest</h3><div class="price">$1,600</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="550"><div class="card-image"><img src="Black_Wildebees.jpg" alt="Wildebeest"></div><h3>Black Wildebeest</h3><div class="price">$1,700</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600"><div class="card-image"><img src="Red Hartebeest.png" alt="Hartebeest"></div><h3>Red Hartebeest</h3><div class="price">$1,950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="650"><div class="card-image"><img src="Steenbok.png" alt="Steenbok"></div><h3>Steenbok</h3><div class="price">$750</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="700"><div class="card-image"><img src="Duiker.jpg" alt="Duiker"></div><h3>Duiker</h3><div class="price">$650</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="750"><div class="card-image"><img src="wathog.png" alt="Warthog"></div><h3>Warthog</h3><div class="price">$950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"><div class="card-image"><img src="Springbuck.jpg" alt="Springbuck"></div><h3>Springbuck</h3><div class="price">$850</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="850"><div class="card-image"><img src="Impala.jpeg" alt="Impala"></div><h3>Impala</h3><div class="price">$1,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="900"><div class="card-image"><img src="Blesbuck.png" alt="Blesbuck"></div><h3>Blesbuck</h3><div class="price">$1,400</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+        </div>
+
+        <!-- ABOUT SECTION with image -->
+        <div class="about-section" data-aos="fade-right">
+            <div class="about-content">
+                <h2><i class="fas fa-compass"></i> About Anchor Hunting Safaris</h2>
+                <p>Located in the heart of Namibia, Anchor Hunting Safaris spans 26,000 acres of pristine savanna bushveld, offering an exclusive hunting experience in one of Africa's most captivating landscapes. Situated roughly 250 miles north-east of Windhoek and just 85 miles from the Botswana border, our privately owned game ranch is home to 18 huntable species, providing a diverse range of hunting opportunities.</p>
+                <p>Specializing in plains game hunting, we are committed to delivering a high-quality, ethical experience, guided by our team of professional hunters. Our focus on sustainable practices ensures that each adventure supports the preservation of the local ecosystem and wildlife for future generations.</p>
+                <p>At Anchor Hunting Safaris, we offer more than just a hunt; we provide an immersive African experience, where clients can enjoy the beauty and challenge of the wild while contributing to the conservation of its unique species. Whether you're an experienced hunter or new to the sport, our expertly guided safaris promise an unforgettable adventure.</p>
+            </div>
+            <div class="about-image">
+                <img src="land.jpg" alt="Anchor Hunting Safari landscape">
+            </div>
+        </div>
+
+        <!-- New Accommodation Slideshow Section -->
+        <div class="accommodation-section">
+            <h2><i class="fas fa-home"></i> ACCOMMODATION & LODGE</h2>
+            <div class="accommodation-grid">
+                <div class="accommodation-card" data-aos="zoom-in">
+                    <div class="acc-image"><img src="pl3.png" alt="Lodge exterior"></div>
+                    <div class="acc-text"><h3>Hunters' Lodge</h3><p>Rustic elegance with en-suite bathrooms, overlooking the waterhole.</p></div>
+                </div>
+                <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="acc-image"><img src="pl.jpg" alt="Tented camp"></div>
+                    <div class="acc-text"><h3>Bed room</h3><p>Immersive suites with private bathrooms – nature at your doorstep.</p></div>
+                </div>
+                <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="acc-image"><img src="pl2.jpg" alt="Main lounge"></div>
+                    <div class="acc-text"><h3>The Boma & Lounge</h3><p>Traditional Namibian boma for evening stories and fine dining.</p></div>
+                </div>
+                <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="acc-image"><img src="pl4.jpg" alt="Pool area"></div>
+                    <div class="acc-text"><h3>Dining Area</h3><p>Enjoy a meal in our elegant dining space.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- contact / quote section -->
+        <div class="contact-quote-section" data-aos="zoom-in">
+            <div class="book-form">
+                <h2><i class="fas fa-pen-rifle"></i> BOOK A HUNT</h2>
+                <div class="form-row">
+                    <div class="form-group"><label>First name</label><input type="text" placeholder="John"></div>
+                    <div class="form-group"><label>Last name</label><input type="text" placeholder="Doe"></div>
+                </div>
+                <div class="form-group"><label>Email*</label><input type="email" placeholder="hunter@example.com"></div>
+                <div class="form-group"><label>What would you like to hunt?</label></div>
+                <div class="animal-check-group">
+                    <span class="animal-check-item"><input type="checkbox"> Chacma Baboon</span>
+                    <span class="animal-check-item"><input type="checkbox"> Sable</span>
+                    <span class="animal-check-item"><input type="checkbox"> Roan</span>
+                    <span class="animal-check-item"><input type="checkbox"> Red Lechwe</span>
+                    <span class="animal-check-item"><input type="checkbox"> Cape Eland</span>
+                    <span class="animal-check-item"><input type="checkbox"> Greater Kudu</span>
+                    <span class="animal-check-item"><input type="checkbox"> Oryx</span>
+                    <span class="animal-check-item"><input type="checkbox"> Giraffe</span>
+                    <span class="animal-check-item"><input type="checkbox"> Waterbuck</span>
+                    <span class="animal-check-item"><input type="checkbox"> Burchell Zebra</span>
+                    <span class="animal-check-item"><input type="checkbox"> Blue Wildebeest</span>
+                    <span class="animal-check-item"><input type="checkbox"> Black Wildebeest</span>
+                    <span class="animal-check-item"><input type="checkbox"> Red Hartebeest</span>
+                    <span class="animal-check-item"><input type="checkbox"> Steenbok</span>
+                    <span class="animal-check-item"><input type="checkbox"> Duiker</span>
+                    <span class="animal-check-item"><input type="checkbox"> Warthog</span>
+                    <span class="animal-check-item"><input type="checkbox"> Springbuck</span>
+                    <span class="animal-check-item"><input type="checkbox"> Impala</span>
+                    <span class="animal-check-item"><input type="checkbox"> Blesbuck</span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Number of Guests</label><input type="number" value="1" min="1"></div>
+                    <div class="form-group"><label>Date picker</label><input type="date" value="2025-08-15"></div>
+                </div>
+                <div class="form-group"><label>Special requirements</label><textarea rows="2" placeholder="Caliber preferences, etc."></textarea></div>
+                <button class="get-quote-btn"><i class="fas fa-bullseye"></i> Get a quote</button>
+            </div>
+            <div class="adventure-text">
+                <h2>YOUR NEXT AFRICAN <br>ADVENTURE</h2>
+                <p>We cater to marksmen & conservationists. Anchor Hunting Safari – fair chase in the Namibian bush. PH's with 20+ years experience.</p>
+                <div class="contact-line"><i class="fas fa-phone-alt"></i> +264818062012 <span style="flex:1;"></span> <i class="fas fa-envelope"></i> bookings@anchorhuntingsafari.com</div>
+                <div style="border-left: 3px solid #c0b27a; padding-left: 20px;">
+                    <p><i class="fas fa-check-circle"></i> Daily limit: ethical selection</p>
+                    <p><i class="fas fa-compass"></i> Professional hunters association</p>
+                </div>
+                <div style="margin-top: 30px;">
+                    <a href="#" class="book-btn"><i class="fab fa-whatsapp"></i> Book now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer with social media links -->
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>ANCHOR HUNTING</h4>
+                    <p>Namibia's premier fair-chase outfitter since 1998.</p>
+                    <p><i class="fas fa-location-dot"></i> Windhoek / Otjiwarongo</p>
+                </div>
+                <div class="footer-col">
+                    <h4>CONTACT</h4>
+                    <p>+264818062012</p>
+                    <p>bookings@anchorhuntingsafari.com</p>
+                    <p>Instagram / Facebook</p>
+                </div>
+                <div class="footer-col">
+                    <h4>INFO</h4>
+                    <a href="#">TERMS & CONDITIONS</a>
+                    <a href="#">PRIVACY POLICY</a>
+                    <a href="#">ACCESSIBILITY STATEMENT</a>
+                </div>
+                <div class="footer-col">
+                    <h4>FOLLOW</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/anchorhunting/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61573215544117" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <i class="fas fa-copyright"></i> Anchor Hunting Safari – precision guided.
+            </div>
+        </footer>
+    </div>
+
+    <!-- AOS and cursor scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS for scroll animations
+        AOS.init({
+            once: true,
+            duration: 800,
+            offset: 100
+        });
+
+        // Custom sniper scope cursor
+        const cursor = document.getElementById('scopeCursor');
+        const dot = document.getElementById('cursorDot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+        });
+
+        // Hero slideshow with slower transition
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Change slide every 6 seconds (slower)
+        setInterval(nextSlide, 6000);
+    </script>
+</body>
+</html>

@@ -24,7 +24,7 @@
             font-family: 'Inter', sans-serif;
             background: #2b3a2b;
             color: #f5efe0;
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
             width: 100%;
         }
@@ -87,7 +87,6 @@
             background-attachment: fixed;
             position: relative;
             width: 100%;
-            overflow-x: hidden;
         }
 
         .bg-camou::before {
@@ -101,47 +100,49 @@
         }
 
         .wrapper {
-            max-width: 1400px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0 20px; /* reduced padding for mobile */
+            padding: 0 16px;  /* reduced padding for mobile */
             position: relative;
             z-index: 2;
             width: 100%;
         }
 
-        /* professional, no cartoon */
         header, section, footer {
             position: relative;
             z-index: 3;
         }
 
-        /* UNSTICKY NAVIGATION (no longer sticky) */
+        /* NAVIGATION — UNSTICKED (position: relative) & fully mobile friendly */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 12px 8px;
             border-bottom: 2px solid #7c8034;
             flex-wrap: wrap;
-            /* position: sticky removed – unpinned */
-            background: rgba(43, 58, 43, 0.95);
+            position: relative;    /* unpinned */
+            top: auto;             /* remove sticky */
+            z-index: 100;
+            background: rgba(43, 58, 43, 0.98);
             backdrop-filter: blur(8px);
             width: 100%;
-            margin: 0 auto;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            border-radius: 0 0 20px 20px;
-            transition: box-shadow 0.2s;
+            left: auto;
+            margin: 0 auto 16px auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            border-radius: 0 0 16px 16px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px; /* reduced for mobile */
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .logo img {
-            height: 55px; /* slightly smaller for mobile */
-            width: 55px;
+            height: 50px;
+            width: 50px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
             border-radius: 50%;
             background: #2a3a2a;
@@ -151,7 +152,7 @@
         }
 
         .logo span {
-            font-size: 1.5rem; /* adjusted */
+            font-size: 1.4rem;
             font-weight: 700;
             color: #fff2cf;
             text-shadow: 2px 2px 0 #2d4025;
@@ -160,21 +161,26 @@
 
         .nav-links {
             display: flex;
-            gap: 20px; /* reduced */
+            gap: 18px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            order: 3; /* for mobile wrap */
+            margin: 8px 0;
+            order: 3;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
             color: #fff6e5;
             text-decoration: none;
             font-size: 0.9rem;
-            padding: 5px 0;
+            padding: 4px 0;
             border-bottom: 2px solid transparent;
             transition: 0.2s;
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -183,7 +189,7 @@
 
         .book-btn {
             background: #7b5e3c;
-            padding: 8px 18px; /* more compact */
+            padding: 8px 18px;
             border-radius: 30px;
             font-weight: 700;
             color: #ffffff;
@@ -200,20 +206,27 @@
         }
 
         .book-btn i {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            color: #ffeaaf;
         }
 
-        /* HERO SLIDESHOW adjustments */
+        .book-btn:hover {
+            background: #6c4f31;
+            border-color: #dbbc7c;
+            transform: scale(1.02);
+        }
+
+        /* HERO SLIDESHOW - mobile optimized height */
         .hero {
             position: relative;
             width: 100%;
-            height: 70vh; /* mobile friendly */
-            min-height: 500px;
-            margin: 20px 0 40px;
-            border-radius: 30px;
+            height: 60vh;
+            min-height: 480px;
+            margin: 8px 0 30px;
+            border-radius: 28px;
             overflow: hidden;
             border: 2px solid #787b4b;
-            box-shadow: 10px 10px 0 #1f2a1f;
+            box-shadow: 8px 8px 0 #1f2a1f;
         }
 
         .hero-slideshow {
@@ -258,31 +271,32 @@
             right: 5%;
             transform: translateY(-50%);
             z-index: 20;
-            max-width: 600px;
+            max-width: 550px;
             background: rgba(30, 45, 30, 0.6);
             backdrop-filter: blur(4px);
-            padding: 25px 25px;
-            border-radius: 30px;
-            border-left: 8px solid #dbb86b;
-            border-bottom: 4px solid #9f8b4c;
+            padding: 24px 20px;
+            border-radius: 24px;
+            border-left: 6px solid #dbb86b;
+            border-bottom: 3px solid #9f8b4c;
             color: white;
             text-shadow: 2px 2px 5px black;
         }
 
         .hero-text-overlay h1 {
-            font-size: 2.2rem; /* scaled for mobile */
+            font-size: 2.2rem;
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.1;
             color: #ffffff;
             text-shadow: 3px 3px 0 #2d4025;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .hero-text-overlay .tagline {
-            font-size: 1.2rem;
-            margin: 10px 0 15px;
+            font-size: 1.1rem;
+            margin: 10px 0 12px;
+            color: #fff5dd;
             border-left: 5px solid #c9b07c;
-            padding-left: 15px;
+            padding-left: 16px;
         }
 
         .hero-text-overlay p {
@@ -290,15 +304,20 @@
             margin-bottom: 20px;
         }
 
+        .hero-text-overlay i {
+            color: #e6d5a8;
+            margin-right: 5px;
+        }
+
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .hero-buttons .book-btn {
-            padding: 10px 20px;
             font-size: 1rem;
+            padding: 10px 18px;
         }
 
         .scope-overlay {
@@ -306,58 +325,63 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 8rem; /* smaller */
-            color: rgba(230, 215, 160, 0.3);
-            text-shadow: 0 0 40px black;
+            font-size: 7rem;
+            color: rgba(230, 215, 160, 0.25);
+            text-shadow: 0 0 30px black;
             pointer-events: none;
             z-index: 15;
             mix-blend-mode: overlay;
         }
 
-        /* cards for animals - structure exactly kept */
+        /* section titles */
         .section-title {
             font-size: 1.8rem;
             font-weight: 700;
-            margin: 40px 0 25px;
+            margin: 40px 0 20px;
             display: flex;
             align-items: center;
             gap: 10px;
             border-bottom: 3px solid #b8a86b;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
+            color: #ffffff;
+            text-shadow: 0 2px 5px black;
             flex-wrap: wrap;
         }
 
         .section-title i {
             font-size: 1.8rem;
+            color: #eedbaa;
         }
 
+        /* cards grid — mobile first */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px; /* consistent gap */
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
         }
 
         .animal-card {
-            background: rgba(40, 55, 35, 0.85);
+            background: rgba(40, 55, 35, 0.9);
             backdrop-filter: blur(2px);
             border: 2px solid #848e54;
-            border-radius: 24px;
-            padding: 0 0 20px 0;
+            border-radius: 20px;
+            padding: 0 0 15px 0;
             text-align: center;
-            transition: all 0.25s;
-            box-shadow: 6px 6px 0 #1f2e1f; /* softer for mobile */
+            transition: all 0.2s;
+            box-shadow: 5px 5px 0 #1f2e1f;
             overflow: hidden;
         }
 
         .animal-card:hover {
             transform: translate(-3px, -3px);
             box-shadow: 10px 10px 0 #142014;
+            border-color: #cfbc7a;
         }
 
         .card-image {
             width: 100%;
-            height: 150px; /* adjusted */
+            height: 130px;
             overflow: hidden;
         }
         .card-image img {
@@ -371,13 +395,27 @@
         }
 
         .animal-card h3 {
-            font-size: 1.3rem;
-            margin: 12px 0 5px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 12px 0 4px;
+            text-shadow: 0 2px 4px black;
+            padding: 0 6px;
         }
 
         .price {
             font-size: 1.4rem;
+            font-weight: 700;
             margin: 5px 0;
+            color: #ffeaa6;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 3px black;
+        }
+
+        .price small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #ddcca2;
         }
 
         .card-book-btn {
@@ -385,156 +423,319 @@
             background: #7b5e3c;
             color: white;
             text-decoration: none;
-            padding: 8px 20px;
+            padding: 7px 18px;
             border-radius: 40px;
             font-weight: 600;
-            margin: 12px 0 5px;
+            margin: 10px 0 5px;
             border: 1px solid #bba66b;
-            font-size: 0.9rem;
+            transition: 0.2s;
+            font-size: 0.85rem;
+            box-shadow: 0 3px 0 #3d462b;
+        }
+        .card-book-btn i {
+            margin-right: 4px;
+            color: #ffe28a;
         }
 
-        /* About section adjustments */
+        .bullet-detail {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 8px 0 0;
+            color: #f0e2b5;
+            font-size: 0.9rem;
+            border-top: 1px dashed #87965a;
+            padding-top: 8px;
+        }
+
+        /* about section grid -> stacked for mobile */
         .about-section {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 25px;
             background: #2f402fe0;
             border: 2px solid #7f8f57;
-            border-radius: 40px 20px 40px 20px;
-            padding: 30px 25px;
+            border-radius: 40px 16px 40px 16px;
+            padding: 30px 20px;
             margin: 50px 0;
+            backdrop-filter: blur(3px);
             box-shadow: 8px 8px 0 #1a2a1a;
         }
 
         .about-content h2 {
             font-size: 2rem;
-            padding-left: 15px;
+            color: #fff2cf;
+            margin-bottom: 18px;
+            border-left: 6px solid #b89d5a;
+            padding-left: 18px;
+            text-shadow: 0 2px 5px black;
         }
         .about-content p {
-            font-size: 1.05rem;
+            font-size: 1rem;
+            margin-bottom: 18px;
+            color: #fff7e6;
+            text-shadow: 0 1px 3px black;
         }
         .about-image {
             width: 100%;
-            height: 300px; /* smaller */
-            border-radius: 30px;
+            height: 280px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 3px solid #b89d5a;
             box-shadow: 10px 10px 0 #1d2a1d;
         }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-        /* Accommodation grid: 1 column on small, 2 on larger */
+        /* accommodation grid -> single column */
+        .accommodation-section {
+            margin: 60px 0;
+        }
+        .accommodation-section h2 {
+            font-size: 2rem;
+            color: #fff2cf;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 2px 5px black;
+        }
         .accommodation-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 25px;
+            gap: 20px;
         }
-        @media (min-width: 600px) {
-            .accommodation-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .accommodation-card {
+            background: rgba(40, 55, 35, 0.9);
+            border: 2px solid #848e54;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 8px 8px 0 #1f2e1f;
         }
-
         .acc-image {
-            height: 220px;
+            height: 210px;
+            overflow: hidden;
         }
-
+        .acc-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .acc-text {
+            padding: 18px;
+            text-align: center;
+        }
         .acc-text h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            color: #ffeaa6;
         }
 
-        /* contact section */
+        /* contact / quote section mobile stacked */
         .contact-quote-section {
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
-            margin: 50px 0;
-            padding: 30px 20px;
+            margin: 60px 0;
+            background: #2d402dd9;
+            border: 2px solid #7e9053;
+            border-radius: 40px 16px 40px 16px;
+            padding: 25px 18px;
+            backdrop-filter: blur(3px);
+        }
+
+        .book-form h2, .adventure-text h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff8e0;
+            text-shadow: 0 2px 5px black;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            flex: 1 1 100%;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #fff3ce;
+            margin-bottom: 4px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #2a3a28;
+            border: 1px solid #9aa568;
+            border-radius: 12px;
+            color: #ffffff;
+            font-weight: 500;
+            outline: none;
+            font-size: 0.95rem;
         }
 
         .animal-check-group {
-            grid-template-columns: repeat(2, 1fr); /* better on mobile */
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 8px;
+            margin: 10px 0 18px;
+            color: #fff6e0;
+        }
+
+        .animal-check-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+
+        .get-quote-btn {
+            background: #77643d;
+            border: none;
+            padding: 14px 24px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 40px;
+            color: #ffffff;
+            border: 1px solid #e6cf8b;
+            cursor: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 0 #3f462b;
+            text-shadow: 0 1px 3px black;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .adventure-text p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
         }
 
         .contact-line {
+            display: flex;
+            align-items: center;
             flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
             font-size: 1rem;
-            padding: 12px 18px;
+            background: #2b3f2b;
+            padding: 12px 16px;
+            border-radius: 40px;
+            border: 1px solid #a5b371;
         }
 
+        .contact-line i {
+            font-size: 1.6rem;
+            color: #ffde9e;
+        }
+
+        /* footer grid -> stacked */
         .footer-grid {
+            display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 25px 15px;
+        }
+
+        .footer-col h4 {
+            color: #fff0cb;
+            text-shadow: 0 1px 4px black;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .footer-col p, .footer-col a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin: 6px 0;
+            font-size: 0.9rem;
+            text-shadow: 0 1px 3px black;
+            word-break: break-word;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
         }
 
         .social-icons a {
-            font-size: 1.8rem;
+            font-size: 2rem;
+            color: #ffeaa5;
+            transition: 0.2s;
         }
 
-        /* override for very small screens */
-        @media (max-width: 500px) {
-            nav {
-                flex-direction: column;
-                gap: 12px;
-                padding: 12px 10px;
-            }
-            .nav-links {
-                order: 0;
-                gap: 18px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .logo span {
-                font-size: 1.4rem;
-            }
-            .hero-text-overlay h1 {
-                font-size: 1.8rem;
-            }
-            .hero { min-height: 450px; }
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            font-size: 0.85rem;
+        }
+
+        /* additional mobile fine-tuning */
+        @media (max-width: 480px) {
+            .hero-text-overlay h1 { font-size: 1.8rem; }
+            .hero-text-overlay { padding: 18px; }
+            .logo span { font-size: 1.2rem; }
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 0.8rem; }
+            .book-btn { padding: 6px 14px; font-size: 0.8rem; }
+            .card-grid { grid-template-columns: repeat(2, 1fr); }
+            .animal-card h3 { font-size: 1rem; }
+            .price { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 360px) {
             .card-grid { grid-template-columns: 1fr; }
-            .animal-check-group { grid-template-columns: 1fr; }
         }
 
-        /* ensure cursor stays within view on mobile, but not intrusive */
-        @media (max-width: 768px) {
-            .custom-cursor, .cursor-dot {
-                display: none; /* touch devices don't need custom cursor */
-            }
-            * {
-                cursor: auto; /* restore default for mobile */
-            }
+        /* ensure no overflow */
+        img {
+            max-width: 100%;
+            height: auto;
         }
-    </style>
+    </style> 
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body class="bg-camou no-emoji">
-    <!-- custom scope cursor elements (hidden on mobile via media query) -->
+    <!-- custom scope cursor elements -->
     <div class="custom-cursor" id="scopeCursor"></div>
     <div class="cursor-dot" id="cursorDot"></div>
 
     <div class="wrapper">
-        <!-- Navigation - NO LONGER STICKY (unpinned) -->
+        <!-- Navigation - UNSTICKY (position relative) and mobile optimized -->
         <nav>
             <div class="logo">
-                <img src="logo.jpg" alt="Anchor Hunting Safari logo">
+                <img src="logo.jpg" alt="Anchor Hunting Safari logo" onerror="this.src='https://placehold.co/60x60?text=ANCHOR'">
                 <span>ANCHOR</span>
             </div>
+            <a href="#" class="book-btn"><i class="fas fa-crosshairs"></i> BOOK NOW</a>
             <div class="nav-links">
                 <a href="#">Home</a>
                 <a href="#">Tours</a>
                 <a href="#">About</a>
                 <a href="#">Contact</a>
             </div>
-            <a href="#" class="book-btn"><i class="fas fa-crosshairs"></i> BOOK NOW</a>
         </nav>
 
-        <!-- Hero section with slideshow -->
+        <!-- Hero section with slideshow and text -->
         <div class="hero">
             <div class="hero-slideshow">
-                <div class="hero-slide active"><img src="guy.jpg" alt="African Savanna"></div>
-                <div class="hero-slide"><img src="dead1.png" alt="Giraffe in Namibia"></div>
-                <div class="hero-slide"><img src="hind.png" alt="Kudu antelope"></div>
-                <div class="hero-slide"><img src="land.jpg" alt="Hunter with binoculars"></div>
-                <div class="hero-slide"><img src="dead2.png" alt="Namibian landscape"></div>
+                <div class="hero-slide active"><img src="guy.jpg" alt="African Savanna" onerror="this.src='https://placehold.co/800x600?text=Hero+Image'"></div>
+                <div class="hero-slide"><img src="dead1.png" alt="Giraffe in Namibia" onerror="this.src='https://placehold.co/800x600?text=Safari'"></div>
+                <div class="hero-slide"><img src="hind.png" alt="Kudu antelope" onerror="this.src='https://placehold.co/800x600?text=Kudu'"></div>
+                <div class="hero-slide"><img src="land.jpg" alt="Hunter with binoculars" onerror="this.src='https://placehold.co/800x600?text=Landscape'"></div>
+                <div class="hero-slide"><img src="dead2.png" alt="Namibian landscape" onerror="this.src='https://placehold.co/800x600?text=Namibia'"></div>
                 <div class="scope-overlay"><i class="fas fa-crosshairs"></i></div>
             </div>
             <div class="hero-text-overlay">
@@ -542,101 +743,86 @@
                 <div class="tagline"><i class="fas fa-location-dot"></i> Namibia · Professional hunting · Fair chase</div>
                 <p><i class="fas fa-bullseye"></i> Exclusive anchored safaris with veteran outfitters.</p>
                 <div class="hero-buttons">
-                    <a href="#" class="book-btn"><i class="fas fa-scope"></i> Book A Hunt</a>
-                    <a href="#" class="book-btn" style="background: #3c502c;"><i class="fas fa-info-circle"></i> Get a quote</a>
+                    <a href="#" class="book-btn" style="font-size: 1rem; padding: 10px 20px;"><i class="fas fa-scope"></i> Book A Hunt</a>
+                    <a href="#" class="book-btn" style="background: #3c502c;"><i class="fas fa-info-circle"></i> Quote</a>
                 </div>
             </div>
         </div>
 
-        <!-- Animal cards (structure unchanged) -->
+        <!-- Animal cards with images and BOOK button (scroll animations) -->
         <div class="section-title">
             <i class="fas fa-gun"></i> 
             <span>TROPHY PRICE LIST · NAMIBIA</span>
             <i class="fas fa-bullseye"></i>
         </div>
         <div class="card-grid">
-            <!-- cards with data-aos fade-up (identical to original) -->
-            <div class="animal-card" data-aos="fade-up"><div class="card-image"><img src="Chacma Baboon.webp" alt="Baboon"></div><h3>Chacma Baboon</h3><div class="price">$650 <small>est.</small></div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="50"><div class="card-image"><img src="Sable.png" alt="Sable"></div><h3>Sable</h3><div class="price">$4,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="100"><div class="card-image"><img src="Roan.png" alt="Roan"></div><h3>Roan</h3><div class="price">$4,800</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="150"><div class="card-image"><img src="Red_lechwe.jpg" alt="Lechwe"></div><h3>Red Lechwe</h3><div class="price">$1,950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="200"><div class="card-image"><img src="cape eland.png" alt="Eland"></div><h3>Cape Eland</h3><div class="price">$3,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-bullseye"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="250"><div class="card-image"><img src="GreaterKudu.jpg" alt="Kudu"></div><h3>Greater Kudu</h3><div class="price">$2,750</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="300"><div class="card-image"><img src="Oryx.png" alt="Oryx"></div><h3>Oryx</h3><div class="price">$2,150</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="350"><div class="card-image"><img src="girraf.jpg" alt="Giraffe"></div><h3>Giraffe</h3><div class="price">$6,500</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="400"><div class="card-image"><img src="Waterbuck.png" alt="Waterbuck"></div><h3>Waterbuck</h3><div class="price">$2,400</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="450"><div class="card-image"><img src="zebra.png" alt="Zebra"></div><h3>Burchell Zebra</h3><div class="price">$1,850</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="500"><div class="card-image"><img src="BlueWilderbeest.png" alt="Wildebeest"></div><h3>Blue Wildebeest</h3><div class="price">$1,600</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="550"><div class="card-image"><img src="Black_Wildebees.jpg" alt="Wildebeest"></div><h3>Black Wildebeest</h3><div class="price">$1,700</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="600"><div class="card-image"><img src="Red Hartebeest.png" alt="Hartebeest"></div><h3>Red Hartebeest</h3><div class="price">$1,950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="650"><div class="card-image"><img src="Steenbok.png" alt="Steenbok"></div><h3>Steenbok</h3><div class="price">$750</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="700"><div class="card-image"><img src="Duiker.jpg" alt="Duiker"></div><h3>Duiker</h3><div class="price">$650</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="750"><div class="card-image"><img src="wathog.png" alt="Warthog"></div><h3>Warthog</h3><div class="price">$950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="800"><div class="card-image"><img src="Springbuck.jpg" alt="Springbuck"></div><h3>Springbuck</h3><div class="price">$850</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="850"><div class="card-image"><img src="Impala.jpeg" alt="Impala"></div><h3>Impala</h3><div class="price">$1,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-delay="900"><div class="card-image"><img src="Blesbuck.png" alt="Blesbuck"></div><h3>Blesbuck</h3><div class="price">$1,400</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <!-- cards with data-aos fade-up (your images preserved) -->
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600"><div class="card-image"><img src="Chacma Baboon.webp" alt="Baboon" onerror="this.src='https://placehold.co/300x200?text=Baboon'"></div><h3>Chacma Baboon</h3><div class="price">$650 <small>est.</small></div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="50"><div class="card-image"><img src="Sable.png" alt="Sable" onerror="this.src='https://placehold.co/300x200?text=Sable'"></div><h3>Sable</h3><div class="price">$4,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100"><div class="card-image"><img src="Roan.png" alt="Roan" onerror="this.src='https://placehold.co/300x200?text=Roan'"></div><h3>Roan</h3><div class="price">$4,800</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="150"><div class="card-image"><img src="Red_lechwe.jpg" alt="Lechwe" onerror="this.src='https://placehold.co/300x200?text=Lechwe'"></div><h3>Red Lechwe</h3><div class="price">$1,950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200"><div class="card-image"><img src="cape eland.png" alt="Eland" onerror="this.src='https://placehold.co/300x200?text=Eland'"></div><h3>Cape Eland</h3><div class="price">$3,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-bullseye"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="250"><div class="card-image"><img src="GreaterKudu.jpg" alt="Kudu" onerror="this.src='https://placehold.co/300x200?text=Kudu'"></div><h3>Greater Kudu</h3><div class="price">$2,750</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300"><div class="card-image"><img src="Oryx.png" alt="Oryx" onerror="this.src='https://placehold.co/300x200?text=Oryx'"></div><h3>Oryx</h3><div class="price">$2,150</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="350"><div class="card-image"><img src="girraf.jpg" alt="Giraffe" onerror="this.src='https://placehold.co/300x200?text=Giraffe'"></div><h3>Giraffe</h3><div class="price">$6,500</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400"><div class="card-image"><img src="Waterbuck.png" alt="Waterbuck" onerror="this.src='https://placehold.co/300x200?text=Waterbuck'"></div><h3>Waterbuck</h3><div class="price">$2,400</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="450"><div class="card-image"><img src="zebra.png" alt="Zebra" onerror="this.src='https://placehold.co/300x200?text=Zebra'"></div><h3>Burchell Zebra</h3><div class="price">$1,850</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500"><div class="card-image"><img src="BlueWilderbeest.png" alt="Wildebeest" onerror="this.src='https://placehold.co/300x200?text=Blue+Wildebeest'"></div><h3>Blue Wildebeest</h3><div class="price">$1,600</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="550"><div class="card-image"><img src="Black_Wildebees.jpg" alt="Black Wildebeest" onerror="this.src='https://placehold.co/300x200?text=Black+Wildebeest'"></div><h3>Black Wildebeest</h3><div class="price">$1,700</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600"><div class="card-image"><img src="Red Hartebeest.png" alt="Hartebeest" onerror="this.src='https://placehold.co/300x200?text=Hartebeest'"></div><h3>Red Hartebeest</h3><div class="price">$1,950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="650"><div class="card-image"><img src="Steenbok.png" alt="Steenbok" onerror="this.src='https://placehold.co/300x200?text=Steenbok'"></div><h3>Steenbok</h3><div class="price">$750</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="700"><div class="card-image"><img src="Duiker.jpg" alt="Duiker" onerror="this.src='https://placehold.co/300x200?text=Duiker'"></div><h3>Duiker</h3><div class="price">$650</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="750"><div class="card-image"><img src="wathog.png" alt="Warthog" onerror="this.src='https://placehold.co/300x200?text=Warthog'"></div><h3>Warthog</h3><div class="price">$950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"><div class="card-image"><img src="Springbuck.jpg" alt="Springbuck" onerror="this.src='https://placehold.co/300x200?text=Springbuck'"></div><h3>Springbuck</h3><div class="price">$850</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="850"><div class="card-image"><img src="Impala.jpeg" alt="Impala" onerror="this.src='https://placehold.co/300x200?text=Impala'"></div><h3>Impala</h3><div class="price">$1,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="900"><div class="card-image"><img src="Blesbuck.png" alt="Blesbuck" onerror="this.src='https://placehold.co/300x200?text=Blesbuck'"></div><h3>Blesbuck</h3><div class="price">$1,400</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
         </div>
 
-        <!-- ABOUT SECTION (unchanged layout, but mobile friendly) -->
+        <!-- ABOUT SECTION with image -->
         <div class="about-section" data-aos="fade-right">
             <div class="about-content">
                 <h2><i class="fas fa-compass"></i> About Anchor Hunting Safaris</h2>
-                <p>Located in the heart of Namibia, Anchor Hunting Safaris spans 26,000 acres of pristine savanna bushveld, offering an exclusive hunting experience in one of Africa's most captivating landscapes. Situated roughly 250 miles north-east of Windhoek and just 85 miles from the Botswana border, our privately owned game ranch is home to 18 huntable species, providing a diverse range of hunting opportunities.</p>
-                <p>Specializing in plains game hunting, we are committed to delivering a high-quality, ethical experience, guided by our team of professional hunters. Our focus on sustainable practices ensures that each adventure supports the preservation of the local ecosystem and wildlife for future generations.</p>
-                <p>At Anchor Hunting Safaris, we offer more than just a hunt; we provide an immersive African experience, where clients can enjoy the beauty and challenge of the wild while contributing to the conservation of its unique species. Whether you're an experienced hunter or new to the sport, our expertly guided safaris promise an unforgettable adventure.</p>
+                <p>Located in the heart of Namibia, Anchor Hunting Safaris spans 26,000 acres of pristine savanna bushveld, offering an exclusive hunting experience. Situated roughly 250 miles north-east of Windhoek and just 85 miles from the Botswana border, our privately owned game ranch is home to 18 huntable species.</p>
+                <p>Specializing in plains game hunting, we are committed to delivering a high-quality, ethical experience, guided by our team of professional hunters.</p>
+                <p>At Anchor Hunting Safaris, we offer more than just a hunt; we provide an immersive African experience, where clients can enjoy the beauty and challenge of the wild while contributing to conservation.</p>
             </div>
             <div class="about-image">
-                <img src="land.jpg" alt="Anchor Hunting Safari landscape" style="width:100%; height:100%; object-fit:cover;">
+                <img src="land.jpg" alt="Anchor Hunting Safari landscape" onerror="this.src='https://placehold.co/600x400?text=Landscape'">
             </div>
         </div>
 
-        <!-- Accommodation Section -->
+        <!-- New Accommodation Slideshow Section -->
         <div class="accommodation-section">
             <h2><i class="fas fa-home"></i> ACCOMMODATION & LODGE</h2>
             <div class="accommodation-grid">
-                <div class="accommodation-card" data-aos="zoom-in">
-                    <div class="acc-image"><img src="pl3.png" alt="Lodge exterior" style="width:100%; height:100%; object-fit:cover;"></div>
-                    <div class="acc-text"><h3>Hunters' Lodge</h3><p>Rustic elegance with en-suite bathrooms, overlooking the waterhole.</p></div>
-                </div>
-                <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="acc-image"><img src="pl.jpg" alt="Tented camp" style="width:100%; height:100%; object-fit:cover;"></div>
-                    <div class="acc-text"><h3>Bed room</h3><p>Immersive suites with private bathrooms – nature at your doorstep.</p></div>
-                </div>
-                <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="acc-image"><img src="pl2.jpg" alt="Main lounge" style="width:100%; height:100%; object-fit:cover;"></div>
-                    <div class="acc-text"><h3>The Boma & Lounge</h3><p>Traditional Namibian boma for evening stories and fine dining.</p></div>
-                </div>
-                <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="acc-image"><img src="pl4.jpg" alt="Pool area" style="width:100%; height:100%; object-fit:cover;"></div>
-                    <div class="acc-text"><h3>Dining Area</h3><p>Enjoy a meal in our elegant dining space.</p></div>
-                </div>
+                <div class="accommodation-card" data-aos="zoom-in"><div class="acc-image"><img src="pl3.png" alt="Lodge exterior" onerror="this.src='https://placehold.co/600x400?text=Lodge'"></div><div class="acc-text"><h3>Hunters' Lodge</h3><p>Rustic elegance overlooking the waterhole.</p></div></div>
+                <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="100"><div class="acc-image"><img src="pl.jpg" alt="Tented camp" onerror="this.src='https://placehold.co/600x400?text=Bedroom'"></div><div class="acc-text"><h3>Bed room</h3><p>Immersive suites with private bathrooms.</p></div></div>
+                <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="200"><div class="acc-image"><img src="pl2.jpg" alt="Main lounge" onerror="this.src='https://placehold.co/600x400?text=Lounge'"></div><div class="acc-text"><h3>The Boma & Lounge</h3><p>Traditional boma for evening stories.</p></div></div>
+                <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="300"><div class="acc-image"><img src="pl4.jpg" alt="Pool area" onerror="this.src='https://placehold.co/600x400?text=Dining'"></div><div class="acc-text"><h3>Dining Area</h3><p>Elegant dining space.</p></div></div>
             </div>
         </div>
 
-        <!-- contact / quote section (structure same) -->
+        <!-- contact / quote section -->
         <div class="contact-quote-section" data-aos="zoom-in">
             <div class="book-form">
                 <h2><i class="fas fa-pen-rifle"></i> BOOK A HUNT</h2>
-                <div class="form-row">
-                    <div class="form-group"><label>First name</label><input type="text" placeholder="John"></div>
-                    <div class="form-group"><label>Last name</label><input type="text" placeholder="Doe"></div>
-                </div>
+                <div class="form-row"><div class="form-group"><label>First name</label><input type="text" placeholder="John"></div><div class="form-group"><label>Last name</label><input type="text" placeholder="Doe"></div></div>
                 <div class="form-group"><label>Email*</label><input type="email" placeholder="hunter@example.com"></div>
                 <div class="form-group"><label>What would you like to hunt?</label></div>
                 <div class="animal-check-group">
-                    <span class="animal-check-item"><input type="checkbox"> Chacma Baboon</span>
+                    <span class="animal-check-item"><input type="checkbox"> Baboon</span>
                     <span class="animal-check-item"><input type="checkbox"> Sable</span>
                     <span class="animal-check-item"><input type="checkbox"> Roan</span>
-                    <span class="animal-check-item"><input type="checkbox"> Red Lechwe</span>
-                    <span class="animal-check-item"><input type="checkbox"> Cape Eland</span>
-                    <span class="animal-check-item"><input type="checkbox"> Greater Kudu</span>
+                    <span class="animal-check-item"><input type="checkbox"> Lechwe</span>
+                    <span class="animal-check-item"><input type="checkbox"> Eland</span>
+                    <span class="animal-check-item"><input type="checkbox"> Kudu</span>
                     <span class="animal-check-item"><input type="checkbox"> Oryx</span>
                     <span class="animal-check-item"><input type="checkbox"> Giraffe</span>
                     <span class="animal-check-item"><input type="checkbox"> Waterbuck</span>
-                    <span class="animal-check-item"><input type="checkbox"> Burchell Zebra</span>
+                    <span class="animal-check-item"><input type="checkbox"> Zebra</span>
                     <span class="animal-check-item"><input type="checkbox"> Blue Wildebeest</span>
                     <span class="animal-check-item"><input type="checkbox"> Black Wildebeest</span>
-                    <span class="animal-check-item"><input type="checkbox"> Red Hartebeest</span>
+                    <span class="animal-check-item"><input type="checkbox"> Hartebeest</span>
                     <span class="animal-check-item"><input type="checkbox"> Steenbok</span>
                     <span class="animal-check-item"><input type="checkbox"> Duiker</span>
                     <span class="animal-check-item"><input type="checkbox"> Warthog</span>
@@ -644,80 +830,43 @@
                     <span class="animal-check-item"><input type="checkbox"> Impala</span>
                     <span class="animal-check-item"><input type="checkbox"> Blesbuck</span>
                 </div>
-                <div class="form-row">
-                    <div class="form-group"><label>Number of Guests</label><input type="number" value="1" min="1"></div>
-                    <div class="form-group"><label>Date picker</label><input type="date" value="2025-08-15"></div>
-                </div>
-                <div class="form-group"><label>Special requirements</label><textarea rows="2" placeholder="Caliber preferences, etc."></textarea></div>
+                <div class="form-row"><div class="form-group"><label>Guests</label><input type="number" value="1" min="1"></div><div class="form-group"><label>Date</label><input type="date" value="2025-08-15"></div></div>
+                <div class="form-group"><label>Requirements</label><textarea rows="2" placeholder="Caliber preferences, etc."></textarea></div>
                 <button class="get-quote-btn"><i class="fas fa-bullseye"></i> Get a quote</button>
             </div>
             <div class="adventure-text">
-                <h2>YOUR NEXT AFRICAN <br>ADVENTURE</h2>
-                <p>We cater to marksmen & conservationists. Anchor Hunting Safari – fair chase in the Namibian bush. PH's with 20+ years experience.</p>
+                <h2>YOUR NEXT AFRICAN ADVENTURE</h2>
+                <p>Fair chase in the Namibian bush. PH's with 20+ years experience.</p>
                 <div class="contact-line"><i class="fas fa-phone-alt"></i> +264818062012 <span style="flex:1;"></span> <i class="fas fa-envelope"></i> bookings@anchorhuntingsafari.com</div>
-                <div style="border-left: 3px solid #c0b27a; padding-left: 20px;">
-                    <p><i class="fas fa-check-circle"></i> Daily limit: ethical selection</p>
-                    <p><i class="fas fa-compass"></i> Professional hunters association</p>
-                </div>
-                <div style="margin-top: 30px;">
-                    <a href="#" class="book-btn"><i class="fab fa-whatsapp"></i> Book now</a>
-                </div>
+                <div style="border-left: 3px solid #c0b27a; padding-left: 16px;"><p><i class="fas fa-check-circle"></i> Ethical selection</p><p><i class="fas fa-compass"></i> Professional hunters assoc.</p></div>
+                <div style="margin-top: 20px;"><a href="#" class="book-btn"><i class="fab fa-whatsapp"></i> Book now</a></div>
             </div>
         </div>
 
-        <!-- Footer -->
+        <!-- Footer with social media links -->
         <footer>
             <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>ANCHOR HUNTING</h4>
-                    <p>Namibia's premier fair-chase outfitter since 1998.</p>
-                    <p><i class="fas fa-location-dot"></i> Windhoek / Otjiwarongo</p>
-                </div>
-                <div class="footer-col">
-                    <h4>CONTACT</h4>
-                    <p>+264818062012</p>
-                    <p>bookings@anchorhuntingsafari.com</p>
-                    <p>Instagram / Facebook</p>
-                </div>
-                <div class="footer-col">
-                    <h4>INFO</h4>
-                    <a href="#">TERMS & CONDITIONS</a>
-                    <a href="#">PRIVACY POLICY</a>
-                    <a href="#">ACCESSIBILITY STATEMENT</a>
-                </div>
-                <div class="footer-col">
-                    <h4>FOLLOW</h4>
-                    <div class="social-icons">
-                        <a href="https://www.instagram.com/anchorhunting/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/profile.php?id=61573215544117" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
+                <div class="footer-col"><h4>ANCHOR HUNTING</h4><p>Namibia's premier fair-chase outfitter since 1998.</p><p><i class="fas fa-location-dot"></i> Windhoek / Otjiwarongo</p></div>
+                <div class="footer-col"><h4>CONTACT</h4><p>+264818062012</p><p>bookings@anchorhuntingsafari.com</p></div>
+                <div class="footer-col"><h4>INFO</h4><a href="#">TERMS</a><a href="#">PRIVACY</a><a href="#">ACCESSIBILITY</a></div>
+                <div class="footer-col"><h4>FOLLOW</h4><div class="social-icons"><a href="#" target="_blank"><i class="fab fa-instagram"></i></a><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
             </div>
-            <div class="copyright">
-                <i class="fas fa-copyright"></i> Anchor Hunting Safari – precision guided.
-            </div>
+            <div class="copyright"><i class="fas fa-copyright"></i> Anchor Hunting Safari – precision guided.</div>
         </footer>
     </div>
 
     <!-- AOS and cursor scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, duration: 800, offset: 100 });
-
-        // Cursor only on non-touch devices (fine)
+        AOS.init({ once: true, duration: 700, offset: 60 });
         const cursor = document.getElementById('scopeCursor');
         const dot = document.getElementById('cursorDot');
-        if (cursor && dot) {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-                dot.style.left = e.clientX + 'px';
-                dot.style.top = e.clientY + 'px';
-            });
-        }
-
-        // Hero slideshow
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+        });
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
         function nextSlide() {

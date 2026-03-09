@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Anchor Hunting Safari | Namibia</title>
-    <!-- Font Awesome 6 (professional icons) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: subtle military grade -->
+    <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- Animate on Scroll (AOS) library for scroll animations -->
+    <!-- Animate on Scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" type="image/jpg" href="logo.jpg">
@@ -17,7 +17,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none; /* hide default cursor to use custom scope */
+            /* cursor: none is applied globally, but removed on mobile via media query */
+            cursor: none;
         }
 
         body {
@@ -29,7 +30,7 @@
             width: 100%;
         }
 
-        /* custom sniper scope cursor (smaller) */
+        /* custom sniper scope cursor (hidden on mobile) */
         .custom-cursor {
             position: fixed;
             width: 36px;
@@ -81,7 +82,17 @@
             box-shadow: 0 0 10px #ffd27f;
         }
 
-        /* camouflage shades & military texture */
+        /* mobile: hide custom cursor, restore default */
+        @media (max-width: 768px) {
+            * {
+                cursor: auto !important;
+            }
+            .custom-cursor, .cursor-dot {
+                display: none !important;
+            }
+        }
+
+        /* camouflage background */
         .bg-camou {
             background: linear-gradient(145deg, #3c523c 0%, #5f6b3c 30%, #7d6e4b 70%, #4e5b3a 100%);
             background-attachment: fixed;
@@ -102,18 +113,15 @@
         .wrapper {
             max-width: 100%;
             margin: 0 auto;
-            padding: 0 16px;  /* reduced padding for mobile */
+            padding: 0 16px;
             position: relative;
             z-index: 2;
             width: 100%;
         }
 
-        header, section, footer {
-            position: relative;
-            z-index: 3;
-        }
+        header, section, footer { position: relative; z-index: 3; }
 
-        /* NAVIGATION — UNSTICKED (position: relative) & fully mobile friendly */
+        /* NAVIGATION — unsticky */
         nav {
             display: flex;
             justify-content: space-between;
@@ -121,13 +129,11 @@
             padding: 12px 8px;
             border-bottom: 2px solid #7c8034;
             flex-wrap: wrap;
-            position: relative;    /* unpinned */
-            top: auto;             /* remove sticky */
+            position: relative;
             z-index: 100;
             background: rgba(43, 58, 43, 0.98);
             backdrop-filter: blur(8px);
             width: 100%;
-            left: auto;
             margin: 0 auto 16px auto;
             box-shadow: 0 4px 10px rgba(0,0,0,0.4);
             border-radius: 0 0 16px 16px;
@@ -205,18 +211,14 @@
             white-space: nowrap;
         }
 
-        .book-btn i {
-            font-size: 1rem;
-            color: #ffeaaf;
-        }
-
+        .book-btn i { color: #ffeaaf; }
         .book-btn:hover {
             background: #6c4f31;
             border-color: #dbbc7c;
             transform: scale(1.02);
         }
 
-        /* HERO SLIDESHOW - mobile optimized height */
+        /* HERO */
         .hero {
             position: relative;
             width: 100%;
@@ -299,26 +301,10 @@
             padding-left: 16px;
         }
 
-        .hero-text-overlay p {
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-text-overlay i {
-            color: #e6d5a8;
-            margin-right: 5px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .hero-buttons .book-btn {
-            font-size: 1rem;
-            padding: 10px 18px;
-        }
+        .hero-text-overlay p { font-size: 1rem; margin-bottom: 20px; }
+        .hero-text-overlay i { color: #e6d5a8; margin-right: 5px; }
+        .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+        .hero-buttons .book-btn { font-size: 1rem; padding: 10px 18px; }
 
         .scope-overlay {
             position: absolute;
@@ -348,12 +334,9 @@
             flex-wrap: wrap;
         }
 
-        .section-title i {
-            font-size: 1.8rem;
-            color: #eedbaa;
-        }
+        .section-title i { font-size: 1.8rem; color: #eedbaa; }
 
-        /* cards grid — mobile first */
+        /* cards grid */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -390,9 +373,7 @@
             object-fit: cover;
             transition: transform 0.4s;
         }
-        .animal-card:hover .card-image img {
-            transform: scale(1.07);
-        }
+        .animal-card:hover .card-image img { transform: scale(1.07); }
 
         .animal-card h3 {
             font-size: 1.2rem;
@@ -403,24 +384,13 @@
             padding: 0 6px;
         }
 
-        .price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin: 5px 0;
-            color: #ffeaa6;
-            letter-spacing: 1px;
-            text-shadow: 0 1px 3px black;
-        }
+        /* Price removed per request */
+        /* .price { ... }  DELETED */
 
-        .price small {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: #ddcca2;
-        }
-
-        .card-book-btn {
+        /* updated button: view button (replaces book) */
+        .card-view-btn {
             display: inline-block;
-            background: #7b5e3c;
+            background: #3f5a3f;
             color: white;
             text-decoration: none;
             padding: 7px 18px;
@@ -430,12 +400,9 @@
             border: 1px solid #bba66b;
             transition: 0.2s;
             font-size: 0.85rem;
-            box-shadow: 0 3px 0 #3d462b;
+            box-shadow: 0 3px 0 #2d3a2d;
         }
-        .card-book-btn i {
-            margin-right: 4px;
-            color: #ffe28a;
-        }
+        .card-view-btn i { margin-right: 4px; color: #ffe28a; }
 
         .bullet-detail {
             display: flex;
@@ -448,7 +415,7 @@
             padding-top: 8px;
         }
 
-        /* about section grid -> stacked for mobile */
+        /* about section first now (moved above trophies) — but we keep structure in HTML order */
         .about-section {
             display: grid;
             grid-template-columns: 1fr;
@@ -457,7 +424,7 @@
             border: 2px solid #7f8f57;
             border-radius: 40px 16px 40px 16px;
             padding: 30px 20px;
-            margin: 50px 0;
+            margin: 50px 0 30px 0; /* adjusted margin */
             backdrop-filter: blur(3px);
             box-shadow: 8px 8px 0 #1a2a1a;
         }
@@ -484,16 +451,10 @@
             border: 3px solid #b89d5a;
             box-shadow: 10px 10px 0 #1d2a1d;
         }
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .about-image img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* accommodation grid -> single column */
-        .accommodation-section {
-            margin: 60px 0;
-        }
+        /* accommodation cards — forced squared */
+        .accommodation-section { margin: 60px 0; }
         .accommodation-section h2 {
             font-size: 2rem;
             color: #fff2cf;
@@ -503,35 +464,43 @@
         }
         .accommodation-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* mobile first */
             gap: 20px;
         }
+
+        /* square cards: consistent aspect-ratio 1/1 */
         .accommodation-card {
             background: rgba(40, 55, 35, 0.9);
             border: 2px solid #848e54;
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 8px 8px 0 #1f2e1f;
+            display: flex;
+            flex-direction: column;
         }
+
         .acc-image {
-            height: 210px;
+            width: 100%;
+            aspect-ratio: 1 / 1;  /* forces square */
             overflow: hidden;
         }
         .acc-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
+
         .acc-text {
             padding: 18px;
             text-align: center;
         }
         .acc-text h3 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: #ffeaa6;
         }
 
-        /* contact / quote section mobile stacked */
+        /* contact / quote */
         .contact-quote-section {
             display: grid;
             grid-template-columns: 1fr;
@@ -551,17 +520,8 @@
             text-shadow: 0 2px 5px black;
         }
 
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .form-group {
-            flex: 1 1 100%;
-        }
-
+        .form-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+        .form-group { flex: 1 1 100%; }
         .form-group label {
             display: block;
             font-size: 0.8rem;
@@ -569,7 +529,6 @@
             color: #fff3ce;
             margin-bottom: 4px;
         }
-
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 12px;
@@ -590,12 +549,7 @@
             color: #fff6e0;
         }
 
-        .animal-check-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-        }
+        .animal-check-item { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; }
 
         .get-quote-btn {
             background: #77643d;
@@ -606,7 +560,7 @@
             border-radius: 40px;
             color: #ffffff;
             border: 1px solid #e6cf8b;
-            cursor: none;
+            cursor: pointer; /* default because cursor none for desktop, fine */
             transition: 0.2s;
             display: inline-flex;
             align-items: center;
@@ -616,11 +570,9 @@
             width: 100%;
             justify-content: center;
         }
+        .get-quote-btn i { color: #ffde9e; }
 
-        .adventure-text p {
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-        }
+        .adventure-text p { font-size: 1.05rem; margin-bottom: 20px; }
 
         .contact-line {
             display: flex;
@@ -635,12 +587,9 @@
             border: 1px solid #a5b371;
         }
 
-        .contact-line i {
-            font-size: 1.6rem;
-            color: #ffde9e;
-        }
+        .contact-line i { font-size: 1.6rem; color: #ffde9e; }
 
-        /* footer grid -> stacked */
+        /* footer */
         .footer-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -663,25 +612,12 @@
             word-break: break-word;
         }
 
-        .social-icons {
-            display: flex;
-            gap: 20px;
-            margin-top: 10px;
-        }
+        .social-icons { display: flex; gap: 20px; margin-top: 10px; }
+        .social-icons a { font-size: 2rem; color: #ffeaa5; transition: 0.2s; }
 
-        .social-icons a {
-            font-size: 2rem;
-            color: #ffeaa5;
-            transition: 0.2s;
-        }
+        .copyright { text-align: center; padding-top: 25px; font-size: 0.85rem; }
 
-        .copyright {
-            text-align: center;
-            padding-top: 25px;
-            font-size: 0.85rem;
-        }
-
-        /* additional mobile fine-tuning */
+        /* mobile fine-tuning */
         @media (max-width: 480px) {
             .hero-text-overlay h1 { font-size: 1.8rem; }
             .hero-text-overlay { padding: 18px; }
@@ -691,29 +627,36 @@
             .book-btn { padding: 6px 14px; font-size: 0.8rem; }
             .card-grid { grid-template-columns: repeat(2, 1fr); }
             .animal-card h3 { font-size: 1rem; }
-            .price { font-size: 1.2rem; }
         }
 
         @media (max-width: 360px) {
             .card-grid { grid-template-columns: 1fr; }
         }
 
-        /* ensure no overflow */
-        img {
-            max-width: 100%;
-            height: auto;
+        /* larger screens: accommodation grid becomes 2 cols, still square */
+        @media (min-width: 640px) {
+            .accommodation-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+        @media (min-width: 900px) {
+            .accommodation-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        img { max-width: 100%; height: auto; }
     </style> 
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body class="bg-camou no-emoji">
-    <!-- custom scope cursor elements -->
+    <!-- custom scope cursor elements (hidden on mobile via media query) -->
     <div class="custom-cursor" id="scopeCursor"></div>
     <div class="cursor-dot" id="cursorDot"></div>
 
     <div class="wrapper">
-        <!-- Navigation - UNSTICKY (position relative) and mobile optimized -->
+        <!-- Navigation -->
         <nav>
             <div class="logo">
                 <img src="logo.jpg" alt="Anchor Hunting Safari logo" onerror="this.src='https://placehold.co/60x60?text=ANCHOR'">
@@ -728,7 +671,7 @@
             </div>
         </nav>
 
-        <!-- Hero section with slideshow and text -->
+        <!-- Hero section with slideshow -->
         <div class="hero">
             <div class="hero-slideshow">
                 <div class="hero-slide active"><img src="guy.jpg" alt="African Savanna" onerror="this.src='https://placehold.co/800x600?text=Hero+Image'"></div>
@@ -749,36 +692,7 @@
             </div>
         </div>
 
-        <!-- Animal cards with images and BOOK button (scroll animations) -->
-        <div class="section-title">
-            <i class="fas fa-gun"></i> 
-            <span>TROPHY PRICE LIST · NAMIBIA</span>
-            <i class="fas fa-bullseye"></i>
-        </div>
-        <div class="card-grid">
-            <!-- cards with data-aos fade-up (your images preserved) -->
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600"><div class="card-image"><img src="Chacma Baboon.webp" alt="Baboon" onerror="this.src='https://placehold.co/300x200?text=Baboon'"></div><h3>Chacma Baboon</h3><div class="price">$650 <small>est.</small></div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="50"><div class="card-image"><img src="Sable.png" alt="Sable" onerror="this.src='https://placehold.co/300x200?text=Sable'"></div><h3>Sable</h3><div class="price">$4,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100"><div class="card-image"><img src="Roan.png" alt="Roan" onerror="this.src='https://placehold.co/300x200?text=Roan'"></div><h3>Roan</h3><div class="price">$4,800</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="150"><div class="card-image"><img src="Red_lechwe.jpg" alt="Lechwe" onerror="this.src='https://placehold.co/300x200?text=Lechwe'"></div><h3>Red Lechwe</h3><div class="price">$1,950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200"><div class="card-image"><img src="cape eland.png" alt="Eland" onerror="this.src='https://placehold.co/300x200?text=Eland'"></div><h3>Cape Eland</h3><div class="price">$3,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-bullseye"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="250"><div class="card-image"><img src="GreaterKudu.jpg" alt="Kudu" onerror="this.src='https://placehold.co/300x200?text=Kudu'"></div><h3>Greater Kudu</h3><div class="price">$2,750</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300"><div class="card-image"><img src="Oryx.png" alt="Oryx" onerror="this.src='https://placehold.co/300x200?text=Oryx'"></div><h3>Oryx</h3><div class="price">$2,150</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="350"><div class="card-image"><img src="girraf.jpg" alt="Giraffe" onerror="this.src='https://placehold.co/300x200?text=Giraffe'"></div><h3>Giraffe</h3><div class="price">$6,500</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400"><div class="card-image"><img src="Waterbuck.png" alt="Waterbuck" onerror="this.src='https://placehold.co/300x200?text=Waterbuck'"></div><h3>Waterbuck</h3><div class="price">$2,400</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="450"><div class="card-image"><img src="zebra.png" alt="Zebra" onerror="this.src='https://placehold.co/300x200?text=Zebra'"></div><h3>Burchell Zebra</h3><div class="price">$1,850</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500"><div class="card-image"><img src="BlueWilderbeest.png" alt="Wildebeest" onerror="this.src='https://placehold.co/300x200?text=Blue+Wildebeest'"></div><h3>Blue Wildebeest</h3><div class="price">$1,600</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="550"><div class="card-image"><img src="Black_Wildebees.jpg" alt="Black Wildebeest" onerror="this.src='https://placehold.co/300x200?text=Black+Wildebeest'"></div><h3>Black Wildebeest</h3><div class="price">$1,700</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600"><div class="card-image"><img src="Red Hartebeest.png" alt="Hartebeest" onerror="this.src='https://placehold.co/300x200?text=Hartebeest'"></div><h3>Red Hartebeest</h3><div class="price">$1,950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="650"><div class="card-image"><img src="Steenbok.png" alt="Steenbok" onerror="this.src='https://placehold.co/300x200?text=Steenbok'"></div><h3>Steenbok</h3><div class="price">$750</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="700"><div class="card-image"><img src="Duiker.jpg" alt="Duiker" onerror="this.src='https://placehold.co/300x200?text=Duiker'"></div><h3>Duiker</h3><div class="price">$650</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="750"><div class="card-image"><img src="wathog.png" alt="Warthog" onerror="this.src='https://placehold.co/300x200?text=Warthog'"></div><h3>Warthog</h3><div class="price">$950</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"><div class="card-image"><img src="Springbuck.jpg" alt="Springbuck" onerror="this.src='https://placehold.co/300x200?text=Springbuck'"></div><h3>Springbuck</h3><div class="price">$850</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="850"><div class="card-image"><img src="Impala.jpeg" alt="Impala" onerror="this.src='https://placehold.co/300x200?text=Impala'"></div><h3>Impala</h3><div class="price">$1,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="900"><div class="card-image"><img src="Blesbuck.png" alt="Blesbuck" onerror="this.src='https://placehold.co/300x200?text=Blesbuck'"></div><h3>Blesbuck</h3><div class="price">$1,400</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
-        </div>
-
-        <!-- ABOUT SECTION with image -->
+        <!-- ABOUT SECTION (moved BEFORE trophy cards) -->
         <div class="about-section" data-aos="fade-right">
             <div class="about-content">
                 <h2><i class="fas fa-compass"></i> About Anchor Hunting Safaris</h2>
@@ -791,7 +705,36 @@
             </div>
         </div>
 
-        <!-- New Accommodation Slideshow Section -->
+        <!-- TROPHY CARDS (price removed, book replaced with view) -->
+        <div class="section-title">
+            <i class="fas fa-gun"></i> 
+            <span>TROPHY LIST · NAMIBIA</span>
+            <i class="fas fa-bullseye"></i>
+        </div>
+        <div class="card-grid">
+            <!-- all cards: deleted price div, changed book to view button -->
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600"><div class="card-image"><img src="Chacma Baboon.webp" alt="Baboon" onerror="this.src='https://placehold.co/300x200?text=Baboon'"></div><h3>Chacma Baboon</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="50"><div class="card-image"><img src="Sable.png" alt="Sable" onerror="this.src='https://placehold.co/300x200?text=Sable'"></div><h3>Sable</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100"><div class="card-image"><img src="Roan.png" alt="Roan" onerror="this.src='https://placehold.co/300x200?text=Roan'"></div><h3>Roan</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="150"><div class="card-image"><img src="Red_lechwe.jpg" alt="Lechwe" onerror="this.src='https://placehold.co/300x200?text=Lechwe'"></div><h3>Red Lechwe</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200"><div class="card-image"><img src="cape eland.png" alt="Eland" onerror="this.src='https://placehold.co/300x200?text=Eland'"></div><h3>Cape Eland</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-bullseye"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="250"><div class="card-image"><img src="GreaterKudu.jpg" alt="Kudu" onerror="this.src='https://placehold.co/300x200?text=Kudu'"></div><h3>Greater Kudu</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300"><div class="card-image"><img src="Oryx.png" alt="Oryx" onerror="this.src='https://placehold.co/300x200?text=Oryx'"></div><h3>Oryx</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="350"><div class="card-image"><img src="girraf.jpg" alt="Giraffe" onerror="this.src='https://placehold.co/300x200?text=Giraffe'"></div><h3>Giraffe</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400"><div class="card-image"><img src="Waterbuck.png" alt="Waterbuck" onerror="this.src='https://placehold.co/300x200?text=Waterbuck'"></div><h3>Waterbuck</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="450"><div class="card-image"><img src="zebra.png" alt="Zebra" onerror="this.src='https://placehold.co/300x200?text=Zebra'"></div><h3>Burchell Zebra</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500"><div class="card-image"><img src="BlueWilderbeest.png" alt="Wildebeest" onerror="this.src='https://placehold.co/300x200?text=Blue+Wildebeest'"></div><h3>Blue Wildebeest</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="550"><div class="card-image"><img src="Black_Wildebees.jpg" alt="Black Wildebeest" onerror="this.src='https://placehold.co/300x200?text=Black+Wildebeest'"></div><h3>Black Wildebeest</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600"><div class="card-image"><img src="Red Hartebeest.png" alt="Hartebeest" onerror="this.src='https://placehold.co/300x200?text=Hartebeest'"></div><h3>Red Hartebeest</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="650"><div class="card-image"><img src="Steenbok.png" alt="Steenbok" onerror="this.src='https://placehold.co/300x200?text=Steenbok'"></div><h3>Steenbok</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="700"><div class="card-image"><img src="Duiker.jpg" alt="Duiker" onerror="this.src='https://placehold.co/300x200?text=Duiker'"></div><h3>Duiker</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="750"><div class="card-image"><img src="wathog.png" alt="Warthog" onerror="this.src='https://placehold.co/300x200?text=Warthog'"></div><h3>Warthog</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"><div class="card-image"><img src="Springbuck.jpg" alt="Springbuck" onerror="this.src='https://placehold.co/300x200?text=Springbuck'"></div><h3>Springbuck</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="850"><div class="card-image"><img src="Impala.jpeg" alt="Impala" onerror="this.src='https://placehold.co/300x200?text=Impala'"></div><h3>Impala</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+            <div class="animal-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="900"><div class="card-image"><img src="Blesbuck.png" alt="Blesbuck" onerror="this.src='https://placehold.co/300x200?text=Blesbuck'"></div><h3>Blesbuck</h3><a href="#" class="card-view-btn"><i class="fas fa-eye"></i> View</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
+        </div>
+
+        <!-- Accommodation slideshow (cards now square) -->
         <div class="accommodation-section">
             <h2><i class="fas fa-home"></i> ACCOMMODATION & LODGE</h2>
             <div class="accommodation-grid">
@@ -802,7 +745,7 @@
             </div>
         </div>
 
-        <!-- contact / quote section -->
+        <!-- contact / quote section (unchanged) -->
         <div class="contact-quote-section" data-aos="zoom-in">
             <div class="book-form">
                 <h2><i class="fas fa-pen-rifle"></i> BOOK A HUNT</h2>
@@ -843,7 +786,7 @@
             </div>
         </div>
 
-        <!-- Footer with social media links -->
+        <!-- Footer -->
         <footer>
             <div class="footer-grid">
                 <div class="footer-col"><h4>ANCHOR HUNTING</h4><p>Namibia's premier fair-chase outfitter since 1998.</p><p><i class="fas fa-location-dot"></i> Windhoek / Otjiwarongo</p></div>

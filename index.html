@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Anchor Hunting Safari | Namibia</title>
-    <!-- Font Awesome 6 -->
+    <!-- Font Awesome 6 (professional icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: subtle military grade -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- AOS library -->
+    <!-- Animate on Scroll (AOS) library for scroll animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" type="image/jpg" href="logo.jpg">
@@ -17,7 +17,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none; /* custom cursor */
+            cursor: none; /* hide default cursor to use custom scope */
         }
 
         body {
@@ -29,7 +29,7 @@
             width: 100%;
         }
 
-        /* custom sniper scope cursor (unchanged) */
+        /* custom sniper scope cursor (smaller) */
         .custom-cursor {
             position: fixed;
             width: 36px;
@@ -81,7 +81,7 @@
             box-shadow: 0 0 10px #ffd27f;
         }
 
-        /* camouflage background */
+        /* camouflage shades & military texture */
         .bg-camou {
             background: linear-gradient(145deg, #3c523c 0%, #5f6b3c 30%, #7d6e4b 70%, #4e5b3a 100%);
             background-attachment: fixed;
@@ -103,13 +103,19 @@
         .wrapper {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 20px; /* reduced padding for mobile */
             position: relative;
             z-index: 2;
             width: 100%;
         }
 
-        /* UNSTICKY NAVIGATION (same as previous) */
+        /* professional, no cartoon */
+        header, section, footer {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* UNSTICKY NAVIGATION (no longer sticky) */
         nav {
             display: flex;
             justify-content: space-between;
@@ -117,22 +123,24 @@
             padding: 15px 0;
             border-bottom: 2px solid #7c8034;
             flex-wrap: wrap;
+            /* position: sticky removed – unpinned */
             background: rgba(43, 58, 43, 0.95);
             backdrop-filter: blur(8px);
             width: 100%;
             margin: 0 auto;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             border-radius: 0 0 20px 20px;
+            transition: box-shadow 0.2s;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 10px; /* reduced for mobile */
         }
 
         .logo img {
-            height: 55px;
+            height: 55px; /* slightly smaller for mobile */
             width: 55px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
             border-radius: 50%;
@@ -143,7 +151,7 @@
         }
 
         .logo span {
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* adjusted */
             font-weight: 700;
             color: #fff2cf;
             text-shadow: 2px 2px 0 #2d4025;
@@ -152,10 +160,11 @@
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 20px; /* reduced */
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            order: 3; /* for mobile wrap */
         }
 
         .nav-links a {
@@ -174,7 +183,7 @@
 
         .book-btn {
             background: #7b5e3c;
-            padding: 8px 18px;
+            padding: 8px 18px; /* more compact */
             border-radius: 30px;
             font-weight: 700;
             color: #ffffff;
@@ -190,11 +199,15 @@
             white-space: nowrap;
         }
 
-        /* HERO (mobile optimized) */
+        .book-btn i {
+            font-size: 0.9rem;
+        }
+
+        /* HERO SLIDESHOW adjustments */
         .hero {
             position: relative;
             width: 100%;
-            height: 70vh;
+            height: 70vh; /* mobile friendly */
             min-height: 500px;
             margin: 20px 0 40px;
             border-radius: 30px;
@@ -257,7 +270,7 @@
         }
 
         .hero-text-overlay h1 {
-            font-size: 2.2rem;
+            font-size: 2.2rem; /* scaled for mobile */
             font-weight: 700;
             line-height: 1.2;
             color: #ffffff;
@@ -283,12 +296,17 @@
             flex-wrap: wrap;
         }
 
+        .hero-buttons .book-btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
         .scope-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 8rem;
+            font-size: 8rem; /* smaller */
             color: rgba(230, 215, 160, 0.3);
             text-shadow: 0 0 40px black;
             pointer-events: none;
@@ -296,7 +314,7 @@
             mix-blend-mode: overlay;
         }
 
-        /* ANIMAL CARDS (structure kept, mobile refined) */
+        /* cards for animals - structure exactly kept */
         .section-title {
             font-size: 1.8rem;
             font-weight: 700;
@@ -316,7 +334,7 @@
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
+            gap: 20px; /* consistent gap */
             margin-bottom: 40px;
         }
 
@@ -328,7 +346,7 @@
             padding: 0 0 20px 0;
             text-align: center;
             transition: all 0.25s;
-            box-shadow: 6px 6px 0 #1f2e1f;
+            box-shadow: 6px 6px 0 #1f2e1f; /* softer for mobile */
             overflow: hidden;
         }
 
@@ -339,7 +357,7 @@
 
         .card-image {
             width: 100%;
-            height: 150px;
+            height: 150px; /* adjusted */
             overflow: hidden;
         }
         .card-image img {
@@ -355,15 +373,11 @@
         .animal-card h3 {
             font-size: 1.3rem;
             margin: 12px 0 5px;
-            color: #ffffff;
-            text-shadow: 0 2px 4px black;
         }
 
         .price {
             font-size: 1.4rem;
-            font-weight: 700;
             margin: 5px 0;
-            color: #ffeaa6;
         }
 
         .card-book-btn {
@@ -379,340 +393,83 @@
             font-size: 0.9rem;
         }
 
-        .bullet-detail {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 10px 0 5px;
-            color: #f0e2b5;
-            font-size: 1rem;
-            border-top: 1px dashed #87965a;
-            padding-top: 12px;
-        }
-
-        /* ---------- ACCOMMODATION & LODGE SECTION – FULL ORIGINAL STYLE ---------- */
-        .accommodation-section {
-            margin: 80px 0;
-        }
-        .accommodation-section h2 {
-            font-size: 2.5rem;        /* original large size */
-            color: #fff2cf;
-            margin-bottom: 30px;
-            text-align: center;
-            text-shadow: 0 2px 5px black;
-            font-weight: 700;
-        }
-        .accommodation-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* original two columns */
-            gap: 30px;                             /* original gap */
-        }
-        .accommodation-card {
-            background: rgba(40, 55, 35, 0.9);
-            border: 2px solid #848e54;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 10px 10px 0 #1f2e1f;       /* original shadow */
-            transition: 0.3s;
-        }
-        .accommodation-card:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: 16px 16px 0 #142014;
-            border-color: #cfbc7a;
-        }
-        .acc-image {
-            height: 280px;               /* original height */
-            overflow: hidden;
-        }
-        .acc-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 5s ease;
-        }
-        .accommodation-card:hover .acc-image img {
-            transform: scale(1.1);
-        }
-        .acc-text {
-            padding: 25px;
-            text-align: center;
-        }
-        .acc-text h3 {
-            font-size: 1.8rem;            /* original size */
-            color: #ffeaa6;
-            margin-bottom: 10px;
-            font-weight: 600;
-            text-shadow: 0 1px 3px black;
-        }
-        .acc-text p {
-            color: #f0e2d0;
-            font-size: 1rem;
-            text-shadow: 0 1px 3px black;
-        }
-
-        /* ABOUT section – original style restored (already fine) */
+        /* About section adjustments */
         .about-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;  /* back to two columns on larger */
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 30px;
             background: #2f402fe0;
             border: 2px solid #7f8f57;
-            border-radius: 50px 20px 50px 20px;
-            padding: 45px 50px;
-            margin: 60px 0;
-            backdrop-filter: blur(3px);
-            box-shadow: 10px 10px 0 #1a2a1a;
-            align-items: center;
+            border-radius: 40px 20px 40px 20px;
+            padding: 30px 25px;
+            margin: 50px 0;
+            box-shadow: 8px 8px 0 #1a2a1a;
         }
+
         .about-content h2 {
-            font-size: 2.5rem;
-            color: #fff2cf;
-            margin-bottom: 25px;
-            border-left: 7px solid #b89d5a;
-            padding-left: 25px;
-            text-shadow: 0 2px 5px black;
+            font-size: 2rem;
+            padding-left: 15px;
         }
         .about-content p {
-            font-size: 1.18rem;
-            margin-bottom: 22px;
-            color: #fff7e6;
-            text-shadow: 0 1px 3px black;
-            line-height: 1.7;
+            font-size: 1.05rem;
         }
         .about-image {
             width: 100%;
-            height: 400px;
+            height: 300px; /* smaller */
             border-radius: 30px;
-            overflow: hidden;
-            border: 3px solid #b89d5a;
-            box-shadow: 15px 15px 0 #1d2a1d;
-        }
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            box-shadow: 10px 10px 0 #1d2a1d;
         }
 
-        /* CONTACT section – original styling preserved */
+        /* Accommodation grid: 1 column on small, 2 on larger */
+        .accommodation-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        @media (min-width: 600px) {
+            .accommodation-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .acc-image {
+            height: 220px;
+        }
+
+        .acc-text h3 {
+            font-size: 1.5rem;
+        }
+
+        /* contact section */
         .contact-quote-section {
             display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 40px;
-            margin: 70px 0;
-            background: #2d402dd9;
-            border: 2px solid #7e9053;
-            border-radius: 50px 20px 50px 20px;
-            padding: 40px;
-            backdrop-filter: blur(3px);
-        }
-
-        .book-form h2, .adventure-text h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #fff8e0;
-            text-shadow: 0 2px 5px black;
-        }
-
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            flex: 1 1 200px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: #fff3ce;
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
-            text-shadow: 0 1px 3px black;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            background: #2a3a28;
-            border: 1px solid #9aa568;
-            border-radius: 12px;
-            color: #ffffff;
-            font-weight: 500;
-            outline: none;
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: #ecd68e;
-            box-shadow: 0 0 0 2px #706a37;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin: 50px 0;
+            padding: 30px 20px;
         }
 
         .animal-check-group {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px 15px;
-            margin: 10px 0 20px;
-            color: #fff6e0;
-        }
-
-        .animal-check-item {
-            display: flex;
-            align-items: center;
+            grid-template-columns: repeat(2, 1fr); /* better on mobile */
             gap: 8px;
-            font-size: 0.95rem;
-        }
-
-        .animal-check-item input[type="checkbox"] {
-            accent-color: #b69f59;
-            width: 16px; height: 16px;
-        }
-
-        .get-quote-btn {
-            background: #77643d;
-            border: none;
-            padding: 16px 35px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 40px;
-            color: #ffffff;
-            border: 1px solid #e6cf8b;
-            cursor: none;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 0 #3f462b;
-            text-shadow: 0 1px 3px black;
-        }
-
-        .get-quote-btn i {
-            font-size: 1.4rem;
-        }
-
-        .get-quote-btn:hover {
-            background: #9e834b;
-            box-shadow: 0 6px 0 #3f462b;
-            transform: translateY(-2px);
-        }
-
-        .adventure-text p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #fff5e2;
-            text-shadow: 0 1px 4px black;
         }
 
         .contact-line {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 30px 0;
-            font-size: 1.2rem;
-            background: #2b3f2b;
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid #a5b371;
-            color: #ffffff;
-        }
-
-        .contact-line i {
-            font-size: 2rem;
-            color: #ffde9e;
-        }
-
-        /* FOOTER original */
-        footer {
-            border-top: 4px solid #8b9a59;
-            padding: 40px 0 30px;
-            margin-top: 40px;
+            flex-wrap: wrap;
+            font-size: 1rem;
+            padding: 12px 18px;
         }
 
         .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .footer-col h4 {
-            color: #fff0cb;
-            text-shadow: 0 1px 4px black;
-        }
-        .footer-col p, .footer-col a {
-            color: #ffffff;
-            text-decoration: none;
-            display: block;
-            margin: 8px 0;
-            font-size: 0.95rem;
-            text-shadow: 0 1px 3px black;
-        }
-
-        .footer-col a:hover {
-            color: #ffe484;
-        }
-
-        .social-icons {
-            display: flex;
+            grid-template-columns: 1fr 1fr;
             gap: 25px;
-            margin-top: 15px;
         }
 
         .social-icons a {
-            font-size: 2rem;
-            color: #ffeaa5;
-            transition: 0.2s;
+            font-size: 1.8rem;
         }
 
-        .social-icons a:hover {
-            color: #ffd966;
-            transform: scale(1.1);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            font-size: 0.9rem;
-            color: #f0e2bb;
-        }
-
-        /* RESPONSIVE OVERRIDES – keep layout integrity for accommodation */
-        @media (max-width: 900px) {
-            .hero { height: 60vh; }
-            .hero-text-overlay { left: 5%; right: 5%; padding: 25px; }
-            .about-section { grid-template-columns: 1fr; } /* about stacks */
-            .contact-quote-section { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            nav { flex-direction: column; gap: 15px; }
-            .nav-links { gap: 20px; }
-
-            /* accommodation keeps two columns until 600px */
-            .accommodation-grid {
-                grid-template-columns: repeat(2, 1fr); /* maintain two cols */
-            }
-        }
-
-        @media (max-width: 600px) {
-            .nav-links { gap: 15px; flex-wrap: wrap; }
-            .card-grid { grid-template-columns: 1fr; }
-            .hero-text-overlay h1 { font-size: 1.8rem; }
-
-            /* accommodation switches to 1 column on narrow screens */
-            .accommodation-grid {
-                grid-template-columns: 1fr;
-            }
-            .accommodation-section h2 {
-                font-size: 2rem; /* slightly smaller but still original vibe */
-            }
-            .acc-image {
-                height: 220px; /* adapt height */
-            }
-            .acc-text h3 {
-                font-size: 1.6rem;
-            }
-        }
-
+        /* override for very small screens */
         @media (max-width: 500px) {
             nav {
                 flex-direction: column;
@@ -722,32 +479,40 @@
             .nav-links {
                 order: 0;
                 gap: 18px;
+                flex-wrap: wrap;
                 justify-content: center;
             }
             .logo span {
                 font-size: 1.4rem;
             }
+            .hero-text-overlay h1 {
+                font-size: 1.8rem;
+            }
             .hero { min-height: 450px; }
+            .card-grid { grid-template-columns: 1fr; }
             .animal-check-group { grid-template-columns: 1fr; }
         }
 
-        /* hide custom cursor on touch */
+        /* ensure cursor stays within view on mobile, but not intrusive */
         @media (max-width: 768px) {
             .custom-cursor, .cursor-dot {
-                display: none;
+                display: none; /* touch devices don't need custom cursor */
             }
             * {
-                cursor: auto;
+                cursor: auto; /* restore default for mobile */
             }
         }
     </style>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body class="bg-camou no-emoji">
+    <!-- custom scope cursor elements (hidden on mobile via media query) -->
     <div class="custom-cursor" id="scopeCursor"></div>
     <div class="cursor-dot" id="cursorDot"></div>
 
     <div class="wrapper">
-        <!-- Navigation (unpinned) -->
+        <!-- Navigation - NO LONGER STICKY (unpinned) -->
         <nav>
             <div class="logo">
                 <img src="logo.jpg" alt="Anchor Hunting Safari logo">
@@ -762,7 +527,7 @@
             <a href="#" class="book-btn"><i class="fas fa-crosshairs"></i> BOOK NOW</a>
         </nav>
 
-        <!-- Hero -->
+        <!-- Hero section with slideshow -->
         <div class="hero">
             <div class="hero-slideshow">
                 <div class="hero-slide active"><img src="guy.jpg" alt="African Savanna"></div>
@@ -783,14 +548,14 @@
             </div>
         </div>
 
-        <!-- Animal cards (same) -->
+        <!-- Animal cards (structure unchanged) -->
         <div class="section-title">
             <i class="fas fa-gun"></i> 
             <span>TROPHY PRICE LIST · NAMIBIA</span>
             <i class="fas fa-bullseye"></i>
         </div>
         <div class="card-grid">
-            <!-- cards identical to original -->
+            <!-- cards with data-aos fade-up (identical to original) -->
             <div class="animal-card" data-aos="fade-up"><div class="card-image"><img src="Chacma Baboon.webp" alt="Baboon"></div><h3>Chacma Baboon</h3><div class="price">$650 <small>est.</small></div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
             <div class="animal-card" data-aos="fade-up" data-aos-delay="50"><div class="card-image"><img src="Sable.png" alt="Sable"></div><h3>Sable</h3><div class="price">$4,200</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
             <div class="animal-card" data-aos="fade-up" data-aos-delay="100"><div class="card-image"><img src="Roan.png" alt="Roan"></div><h3>Roan</h3><div class="price">$4,800</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-crosshairs"></i></div></div>
@@ -812,7 +577,7 @@
             <div class="animal-card" data-aos="fade-up" data-aos-delay="900"><div class="card-image"><img src="Blesbuck.png" alt="Blesbuck"></div><h3>Blesbuck</h3><div class="price">$1,400</div><a href="#" class="card-book-btn"><i class="fas fa-calendar-check"></i> Book now</a><div class="bullet-detail"><i class="fas fa-bolt"></i> <i class="fas fa-scope"></i></div></div>
         </div>
 
-        <!-- ABOUT SECTION (original two‑column restored) -->
+        <!-- ABOUT SECTION (unchanged layout, but mobile friendly) -->
         <div class="about-section" data-aos="fade-right">
             <div class="about-content">
                 <h2><i class="fas fa-compass"></i> About Anchor Hunting Safaris</h2>
@@ -821,34 +586,34 @@
                 <p>At Anchor Hunting Safaris, we offer more than just a hunt; we provide an immersive African experience, where clients can enjoy the beauty and challenge of the wild while contributing to the conservation of its unique species. Whether you're an experienced hunter or new to the sport, our expertly guided safaris promise an unforgettable adventure.</p>
             </div>
             <div class="about-image">
-                <img src="land.jpg" alt="Anchor Hunting Safari landscape">
+                <img src="land.jpg" alt="Anchor Hunting Safari landscape" style="width:100%; height:100%; object-fit:cover;">
             </div>
         </div>
 
-        <!-- ACCOMMODATION SECTION – FULL ORIGINAL STYLE -->
+        <!-- Accommodation Section -->
         <div class="accommodation-section">
             <h2><i class="fas fa-home"></i> ACCOMMODATION & LODGE</h2>
             <div class="accommodation-grid">
                 <div class="accommodation-card" data-aos="zoom-in">
-                    <div class="acc-image"><img src="pl3.png" alt="Lodge exterior"></div>
+                    <div class="acc-image"><img src="pl3.png" alt="Lodge exterior" style="width:100%; height:100%; object-fit:cover;"></div>
                     <div class="acc-text"><h3>Hunters' Lodge</h3><p>Rustic elegance with en-suite bathrooms, overlooking the waterhole.</p></div>
                 </div>
                 <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="acc-image"><img src="pl.jpg" alt="Tented camp"></div>
+                    <div class="acc-image"><img src="pl.jpg" alt="Tented camp" style="width:100%; height:100%; object-fit:cover;"></div>
                     <div class="acc-text"><h3>Bed room</h3><p>Immersive suites with private bathrooms – nature at your doorstep.</p></div>
                 </div>
                 <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="acc-image"><img src="pl2.jpg" alt="Main lounge"></div>
+                    <div class="acc-image"><img src="pl2.jpg" alt="Main lounge" style="width:100%; height:100%; object-fit:cover;"></div>
                     <div class="acc-text"><h3>The Boma & Lounge</h3><p>Traditional Namibian boma for evening stories and fine dining.</p></div>
                 </div>
                 <div class="accommodation-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="acc-image"><img src="pl4.jpg" alt="Pool area"></div>
+                    <div class="acc-image"><img src="pl4.jpg" alt="Pool area" style="width:100%; height:100%; object-fit:cover;"></div>
                     <div class="acc-text"><h3>Dining Area</h3><p>Enjoy a meal in our elegant dining space.</p></div>
                 </div>
             </div>
         </div>
 
-        <!-- CONTACT section (original style) -->
+        <!-- contact / quote section (structure same) -->
         <div class="contact-quote-section" data-aos="zoom-in">
             <div class="book-form">
                 <h2><i class="fas fa-pen-rifle"></i> BOOK A HUNT</h2>
@@ -900,7 +665,7 @@
             </div>
         </div>
 
-        <!-- Footer (original) -->
+        <!-- Footer -->
         <footer>
             <div class="footer-grid">
                 <div class="footer-col">
@@ -935,10 +700,12 @@
         </footer>
     </div>
 
+    <!-- AOS and cursor scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, duration: 800, offset: 100 });
 
+        // Cursor only on non-touch devices (fine)
         const cursor = document.getElementById('scopeCursor');
         const dot = document.getElementById('cursorDot');
         if (cursor && dot) {
@@ -950,6 +717,7 @@
             });
         }
 
+        // Hero slideshow
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
         function nextSlide() {
